@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :deny_access_if_not_admin, only: [:new, :create, :destroy]
 
   # GET /users
   def index
@@ -54,6 +55,11 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:name, :email)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
+    end
+
+    def deny_access_if_not_admin
+      flash[:alert] = 'You are not allowed to perform this action'
+      redirect_to '/admin/users' unless current_user.admin?
     end
 end
