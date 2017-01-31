@@ -10,6 +10,8 @@ class UsersController < ApplicationController
 
   # GET /users/1
   def show
+    @message = Message.new
+    @messages = Message.between(current_user.id, @user.id)
   end
 
   # GET /users/new

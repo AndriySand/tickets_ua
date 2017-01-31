@@ -15,6 +15,47 @@
     No
   <% end %>
 </p>
+<p>
+  <strong>Your conversation with <%= @user.name %></strong>
+  <p>
+    <strong>Title</strong>
+    <strong>Author</strong>
+    <strong>Action</strong>
+  </p>
+  <p>
+  <% @messages.each do |message| %>
+  <p>
+    <%= message.title %>
+    <%= message.author.name %>
+    <%= link_to 'Show', user_message_path(@user, message) %>
+  </p>
+  <% end %>
+  </p>
+  <strong>Send a message</strong>
+
+  <%= form_for [@user, @message] do |f| %>
+  <% if @message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+
+      <ul>
+      <% @message.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.text_field :title, placeholder: :title %> </br>
+  </p>
+  <p>
+    <%= f.text_area :body, cols: 70, placeholder: :body_of_message %></br>
+  </p>
+    <%= f.hidden_field :recipient_id, value: @user.id %></br>
+
+    <%= f.submit 'Send message' %>
+  <% end %>
+</p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
