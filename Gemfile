@@ -29,3 +29,5 @@ group :development do
   gem 'web-console', '~> 2.0'
 end
 
+gem 'rails_12factor', group: :production
+gem "twitter-bootstrap-rails"

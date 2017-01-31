@@ -16,21 +16,35 @@
   <% end %>
 </p>
 <p>
-  <strong>Your conversation with <%= @user.name %></strong>
-  <p>
-    <strong>Title</strong>
-    <strong>Author</strong>
-    <strong>Action</strong>
-  </p>
-  <p>
+<strong>Your conversation with <%= @user.name %></strong>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Date</th>
+      <th>Body</th>
+    </tr>
+  </thead>
+  <tbody>
   <% @messages.each do |message| %>
-  <p>
-    <%= message.title %>
-    <%= message.author.name %>
-    <%= link_to 'Show', user_message_path(@user, message) %>
-  </p>
+  <tr>
+    <td>
+      <%= link_to message.title, user_message_path(@user, message) %>
+    </td>
+    <td>
+      <%= message.author.name %>
+    </td>
+    <td>
+      <%= message.created_at %>
+    </td>
+    <td>
+      <%= truncate(message.body, length: 60) %>
+    </td>
+  </tr>
   <% end %>
-  </p>
+  </tbody>
+</table>
   <strong>Send a message</strong>
 
   <%= form_for [@user, @message] do |f| %>
