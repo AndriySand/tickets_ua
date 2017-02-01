@@ -5,4 +5,7 @@ class Message < ActiveRecord::Base
     where("(author_id = ? AND recipient_id = ?) or (author_id = ? AND recipient_id = ?)", author_id, recipient_id, recipient_id, author_id)
   end
 
+  def recipient
+    User.find(recipient_id)
+  end
 end

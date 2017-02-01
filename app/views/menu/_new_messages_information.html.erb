@@ -1,0 +1,11 @@
+<% if current_user && current_user.collect_unread.any? %>
+  <li class="unread-messages">
+    <%= link_to(unread_messages_user_path(current_user)) do %>
+      <strong>You have <%= current_user.collect_unread.count %> new messages</strong>
+    <% end %>
+  </li>
+<% else %>
+  <li class="old-messages">
+    <strong>You don't have new messages</strong>
+  </li>
+<% end %>

@@ -5,7 +5,9 @@
 <% end %>
 <li class="user-name">User:
 <% if current_user %>
-  <%= current_user.email %> <%= current_user.id %></li>
+  <%= current_user.email %>,
+    your ID: <span class="user-id"> <%= current_user.id %> </span></li>
 <% else %>
   (not logged in)</li>
 <% end %>
+<%= render "menu/new_messages_information" %>

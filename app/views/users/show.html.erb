@@ -16,6 +16,7 @@
   <% end %>
 </p>
 <p>
+<div class= <%= @user == current_user ? "hidden" : "conversation" %> >
 <strong>Your conversation with <%= @user.name %></strong>
 <table class="table">
   <thead>
@@ -70,6 +71,6 @@
     <%= f.submit 'Send message' %>
   <% end %>
 </p>
-
+</div>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

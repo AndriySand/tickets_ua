@@ -63,6 +63,13 @@ class UsersController < ApplicationController
     redirect_to users_url, notice: 'User was successfully destroyed.'
   end
 
+  def count_unread_messages
+  end
+
+  def unread_messages
+    @messages = current_user.collect_unread
+  end
+
   protected
 
     def needs_password?(user, params)
