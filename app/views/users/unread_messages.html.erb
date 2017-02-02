@@ -1,0 +1,30 @@
+<h2>Here is your new messages</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Date</th>
+      <th>Body</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @messages.each do |message| %>
+  <tr>
+    <td>
+      <%= link_to message.title, user_message_path(message.author, message) %>
+    </td>
+    <td>
+      <%= message.author.name %>
+    </td>
+    <td>
+      <%= message.created_at %>
+    </td>
+    <td>
+      <%= truncate(message.body, length: 60) %>
+    </td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= link_to 'To the list of users', users_path %>

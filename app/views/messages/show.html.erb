@@ -1,0 +1,48 @@
+<p>
+  <strong>Author:</strong>
+  <%= @message.author.name %>
+</p>
+<p>
+  <strong>Receiver:</strong>
+  <%= @message.recipient.name %>
+</p>
+<p>
+  <strong>Date:</strong>
+  <%= @message.created_at %>
+</p>
+<p>
+  <strong>Title:</strong>
+  <%= @message.title %>
+</p>
+<p>
+  <strong>Body:</strong>
+  <%= @message.body %>
+</p>
+  <strong>Reply to this message</strong>
+
+  <%= form_for [@user, current_user.messages.new] do |f| %>
+  <% if @message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+
+      <ul>
+      <% @message.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.text_field :title, placeholder: :title %> </br>
+  </p>
+  <p>
+    <%= f.text_area :body, cols: 70, placeholder: :body_of_message %></br>
+  </p>
+    <%= f.hidden_field :recipient_id, value: @user.id %></br>
+
+    <%= f.submit 'Send message' %>
+  <% end %>
+
+<%= link_to(user_path(@user)) do %>
+  <span>Back to conversation with <%= @user.name %></span>
+<% end %>

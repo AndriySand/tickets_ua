@@ -71,10 +71,13 @@ div {
     list-style: square;
   }
 }
-li.user-name {
+li.user-name, .renew-link {
   padding-top: 15px;
 }
 .old-messages {
   padding-top: 15px;
   padding-left: 15px;
+}
+footer {
+  padding-bottom: 60px;
 }

@@ -11,3 +11,4 @@
   (not logged in)</li>
 <% end %>
 <%= render "menu/new_messages_information" %>
+<li class="renew-link"><%= button_to "Count new messages", count_unread_messages_user_path(current_user), method: :get, remote: true %></li>

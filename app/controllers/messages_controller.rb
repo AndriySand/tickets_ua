@@ -3,6 +3,7 @@ class MessagesController < ApplicationController
 
   def show
     @user = User.find(params[:user_id])
+    @message.update(read: true)
   end
 
   # POST /messages
