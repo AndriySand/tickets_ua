@@ -50,6 +50,8 @@ GEM
       i18n
       rake (>= 10.0.0)
       sshkit (>= 1.9.0)
+    capistrano-passenger (0.2.0)
+      capistrano (~> 3.0)
     commonjs (0.2.7)
     concurrent-ruby (1.0.4)
     debug_inspector (0.0.2)
@@ -98,9 +100,6 @@ GEM
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
-    passenger (5.1.2)
-      rack
-      rake (>= 0.8.1)
     pg (0.15.1)
     rack (1.6.5)
     rack-contrib (1.4.0)
@@ -194,11 +193,11 @@ PLATFORMS
 DEPENDENCIES
   byebug
   capistrano
+  capistrano-passenger
   devise
   execjs
   jquery-rails
   meta_request
-  passenger
   pg
   rails (= 4.2.6)
   rails_12factor

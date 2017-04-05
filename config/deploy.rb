@@ -9,6 +9,7 @@ set :repo_url, "git@github.com:AndriySand/tickets_ua.git"
 
 # Default deploy_to directory is /var/www/my_app_name
  set :deploy_to, "/home/sites"
+ set :passenger_restart_with_touch, true
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -37,7 +38,8 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      execute :touch, release_path.join('tmp/restart.txt')
+#      execute :touch, release_path.join('tmp/restart.txt')
+      touch 'tmp/restart.txt'
     end
   end
 
