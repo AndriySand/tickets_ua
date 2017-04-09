@@ -31,18 +31,17 @@ set :repo_url, "git@github.com:AndriySand/tickets_ua.git"
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 # Default value for keep_releases is 5
- set :keep_releases, 3
+ set :keep_releases, 5
 
 namespace :deploy do
 
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-#      execute :touch, release_path.join('tmp/restart.txt')
-      touch 'tmp/restart.txt'
+      execute :touch, release_path.join('tmp/restart.txt')
     end
   end
 
-  after :publishing, :restart
-
+  after :publishing, 'deploy:restart'
+  after :finishing, 'deploy:cleanup'
 end
